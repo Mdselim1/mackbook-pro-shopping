@@ -1,4 +1,4 @@
-function valuePrint(idpara, value) {
+function valueFind(idpara, value) {
     const mainValue = document.getElementById(idpara).innerText = value;
     return mainValue;
 }
@@ -33,31 +33,31 @@ function similarAddThree(valueThree) {
 }
 
 document.getElementById('memory-8gb-price').addEventListener('click', function () {
-    const memory8gbValue = valuePrint('memory-cost', 0);
+    const memory8gbValue = valueFind('memory-cost', 0);
     similarAdd(memory8gbValue);
 })
 document.getElementById('memory-16gb-price').addEventListener('click', function () {
-    const memory16gb = valuePrint('memory-cost', 180);
+    const memory16gb = valueFind('memory-cost', 180);
     similarAdd(memory16gb);
 })
 document.getElementById('ssd-256gb-price').addEventListener('click', function () {
-    const memory256gb = valuePrint('storage-cost', 0);
+    const memory256gb = valueFind('storage-cost', 0);
     similarAddTwo(memory256gb);
 })
 document.getElementById('ssd-512gb-price').addEventListener('click', function () {
-    const memory512gb = valuePrint('storage-cost', 100);
+    const memory512gb = valueFind('storage-cost', 100);
     similarAddTwo(memory512gb);
 })
 document.getElementById('ssd-1tb-price').addEventListener('click', function () {
-    const memory1tb = valuePrint('storage-cost', 180);
+    const memory1tb = valueFind('storage-cost', 180);
     similarAddTwo(memory1tb);
 })
 document.getElementById('delivery-free').addEventListener('click', function () {
-    const deliveryFree = valuePrint('delivery-cost', 0);
+    const deliveryFree = valueFind('delivery-cost', 0);
     similarAddThree(deliveryFree);
 })
 document.getElementById('delivery-prime').addEventListener('click', function () {
-    const deliveryPrime = valuePrint('delivery-cost', 20);
+    const deliveryPrime = valueFind('delivery-cost', 20);
     similarAddThree(deliveryPrime);
 })
 
@@ -72,6 +72,6 @@ document.getElementById('promo-btn').addEventListener('click', function () {
         const findNumber = parseInt(totalNumber * totalNumberPer);
         totalValue.innerText = totalNumber - findNumber;
     } else {
-        document.getElementById('error').innerText = 'Please give right coupon';
+        document.getElementById('error').innerText = 'Please apply right coupon';
     }
 })
