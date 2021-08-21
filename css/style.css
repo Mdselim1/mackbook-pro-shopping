@@ -50,3 +50,12 @@ a{
 .bold-border{
     border-bottom: 2px solid #222;
 }
+p{
+    margin-bottom: 0;
+}
+
+@media (max-width:550px){
+    .price-btn{
+        margin-bottom: 8px;
+    }
+}

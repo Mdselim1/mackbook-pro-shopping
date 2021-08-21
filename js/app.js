@@ -13,73 +13,63 @@ function totalFind(cost) {
 
 // Memory Function 
 
-function memoryTotalFind(valueOne) {
-    const storage256gb = document.getElementById('storage-cost').innerText;
-    const deliveryCost = document.getElementById('delivery-cost').innerText;
+function memoryTotalFind(valueOfMain, valueOfId1, valueOfId2) {
+    const storage256gb = document.getElementById(valueOfId1).innerText;
+    const deliveryCost = document.getElementById(valueOfId2).innerText;
     const baseCost = document.getElementById('base-price').innerText;
-    const totalCost = parseInt(valueOne) + parseInt(storage256gb) + parseInt(deliveryCost) + parseInt(baseCost);
+    const totalCost = parseInt(valueOfMain) + parseInt(storage256gb) + parseInt(deliveryCost) + parseInt(baseCost);
     totalFind(totalCost);
-
+    document.getElementById('promo-btn').disabled = false;
+    document.getElementById('error').innerText = '';
 }
 
-// Storage Fuction 
-
-function storageTotalFind(valueTwo) {
-    const storage256gb2 = document.getElementById('memory-cost').innerText;
-    const deliveryCost2 = document.getElementById('delivery-cost').innerText;
-    const baseCost2 = document.getElementById('base-price').innerText;
-    const totalCost2 = parseInt(valueTwo) + parseInt(storage256gb2) + parseInt(deliveryCost2) + parseInt(baseCost2);
-    totalFind(totalCost2);
-}
-
-// Delivery Function 
-
-function deliveryTotalFind(valueThree) {
-    const storage256gb3 = document.getElementById('memory-cost').innerText;
-    const deliveryCost3 = document.getElementById('storage-cost').innerText;
-    const baseCost3 = document.getElementById('base-price').innerText;
-    const totalCost3 = parseInt(valueThree) + parseInt(storage256gb3) + parseInt(deliveryCost3) + parseInt(baseCost3);
-    totalFind(totalCost3);
-}
+// memory 8gb work 
 
 document.getElementById('memory-8gb-price').addEventListener('click', function () {
     const memory8gbValue = valueFind('memory-cost', 0);
-    memoryTotalFind(memory8gbValue);
+    memoryTotalFind(memory8gbValue, 'storage-cost', 'delivery-cost');
 });
+
+// memory 16gb work 
 
 document.getElementById('memory-16gb-price').addEventListener('click', function () {
     const memory16gb = valueFind('memory-cost', 180);
-    memoryTotalFind(memory16gb);
+    memoryTotalFind(memory16gb, 'storage-cost', 'delivery-cost');
 });
 
+// ssd - 256gb - work 
 
 document.getElementById('ssd-256gb-price').addEventListener('click', function () {
     const memory256gb = valueFind('storage-cost', 0);
-    storageTotalFind(memory256gb);
+    memoryTotalFind(memory256gb, 'memory-cost', 'delivery-cost');
 });
 
+// ssd - 512gb - work 
 
 document.getElementById('ssd-512gb-price').addEventListener('click', function () {
     const memory512gb = valueFind('storage-cost', 100);
-    storageTotalFind(memory512gb);
+    memoryTotalFind(memory512gb, 'memory-cost', 'delivery-cost');
 });
 
+// ssd - 1tb - work 
 
 document.getElementById('ssd-1tb-price').addEventListener('click', function () {
     const memory1tb = valueFind('storage-cost', 180);
-    storageTotalFind(memory1tb);
+    memoryTotalFind(memory1tb, 'memory-cost', 'delivery-cost');
 });
 
+// delivery Free work 
 
 document.getElementById('delivery-free').addEventListener('click', function () {
     const deliveryFree = valueFind('delivery-cost', 0);
-    deliveryTotalFind(deliveryFree);
+    memoryTotalFind(deliveryFree, 'memory-cost', 'storage-cost');
 });
 
+// delivery Premium work 
 
 document.getElementById('delivery-prime').addEventListener('click', function () {
     const deliveryPrime = valueFind('delivery-cost', 20);
-    deliveryTotalFind(deliveryPrime);
+    memoryTotalFind(deliveryPrime, 'memory-cost', 'storage-cost');
 });
 
 // Apply Coupon Code 
@@ -89,11 +79,12 @@ document.getElementById('promo-btn').addEventListener('click', function () {
     const promoValue = promoValueField.value;
     promoValueField.value = '';
     const totalValue = document.getElementById('coupon-total');
-    const totalNumber = parseInt(totalValue.innerText);
+    const subTotal = document.getElementById('total-price').innerText;
+    const subTotalNumber = parseInt(subTotal);
     if (promoValue == 'stevekaku') {
         const totalNumberPer = 20 / 100;
-        const findNumber = parseInt(totalNumber * totalNumberPer);
-        totalValue.innerText = totalNumber - findNumber;
+        const findNumber = subTotalNumber * totalNumberPer;
+        totalValue.innerText = parseInt(subTotalNumber - findNumber);
         document.getElementById('promo-btn').disabled = true;
         document.getElementById('error').innerText = 'You can apply coupon one time';
     } else {
